@@ -8,7 +8,7 @@ The solution follows a **Medallion Architecture** pattern:
 
 * **Bronze Layer** → Raw source-aligned schema
 * **Silver Layer** → Data Vault 2.0 model
-* **Gold Layer** → Kimball dimensional model (Data Mart)
+* **Gold Layer** → Kimball's dimensional model (Data Mart)
 
 This layered approach ensures scalability, auditability, and optimized analytics consumption.
 
@@ -148,7 +148,7 @@ This notebook demonstrates:
 * Full auditability and lineage
 * Handles schema evolution efficiently
 
-### Kimball (Gold)
+### Kimball's Dimesnsional Models (Gold)
 
 * High-performance analytics
 * Business-friendly schema
