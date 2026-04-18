@@ -68,9 +68,12 @@ Implements Data Vault 2.0 modeling:
 ```
 .
 ├── notebooks/
-│   └── customer_order.ipynb
+│   └── datamart_streaming_table.ipynb
+│   └── datavault2_allpyspark.ipynb
+│   └── datavault2_allsql.ipynb
 ├── data/
-│   └── sample datasets
+│   └── customers-10000.csv
+│   └── products-10000.csv
 ├── README.md
 ```
 
