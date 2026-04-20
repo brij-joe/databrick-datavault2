@@ -1,0 +1,214 @@
+{
+  "datasets": [
+    {
+      "name": "8d57b5e5",
+      "displayName": "annual_sales_summary",
+      "queryLines": [
+        "SELECT d.year, p.category, o.amount  \r\n",
+        "FROM brij_lakehouse.gold.fact_orders o\r\n",
+        "JOIN brij_lakehouse.gold.dim_product p ON o.product_id = p.product_id \r\n",
+        "JOIN brij_lakehouse.gold.dim_date d ON o.order_date = d.date\r\n",
+        "ORDER BY d.year"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "741f1cd0",
+      "displayName": "Annual Sales",
+      "layout": [
+        {
+          "widget": {
+            "name": "284f6cb7",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8d57b5e5",
+                  "fields": [
+                    {
+                      "name": "year",
+                      "expression": "`year`"
+                    },
+                    {
+                      "name": "sum(amount)",
+                      "expression": "SUM(`amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "frame": {
+                "showTitle": true,
+                "showDescription": true
+              },
+              "widgetType": "combo",
+              "encodings": {
+                "x": {
+                  "fieldName": "year",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "sum(amount)"
+                      }
+                    ]
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "sum(amount)"
+                      }
+                    ]
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 2,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "year",
+            "queries": [
+              {
+                "name": "dashboards/01f13c8c177a1986a2f202534f96f8ab/datasets/01f13c8c2d621f7db14deaf907ba9005_year",
+                "query": {
+                  "datasetName": "8d57b5e5",
+                  "fields": [
+                    {
+                      "name": "year",
+                      "expression": "`year`"
+                    },
+                    {
+                      "name": "year_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Year"
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "year",
+                    "queryName": "dashboards/01f13c8c177a1986a2f202534f96f8ab/datasets/01f13c8c2d621f7db14deaf907ba9005_year"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 0,
+            "width": 4,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "dbe88027",
+            "queries": [
+              {
+                "name": "dashboards/01f13c8c177a1986a2f202534f96f8ab/datasets/01f13c8c2d621f7db14deaf907ba9005_category",
+                "query": {
+                  "datasetName": "8d57b5e5",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "category_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "category",
+                    "queryName": "dashboards/01f13c8c177a1986a2f202534f96f8ab/datasets/01f13c8c2d621f7db14deaf907ba9005_category"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 1,
+            "width": 4,
+            "height": 1
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "91e13607",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "5955a8d4",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
